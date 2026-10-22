@@ -1,0 +1,56 @@
+/* Apply styles globally to remove default browser behavior and set the background */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* SET THE SEAMLESS DARK GRADIENT BACKGROUND GLOBALLY */
+  background: #0f2027; /* fallback for old browsers */
+  background: linear-gradient(to right, #2c5464, #203a43, #0f2027);
+  background-attachment: fixed; /* Prevents the gradient from scrolling with content */
+}
+
+/* Define global color variables for consistency */
+:root {
+  --primary-bg: #2c3e50;
+  --secondary-bg: #34495e;
+  --font-color: #ecf0f1;
+  --border-color: #4a627a;
+  --input-bg: #fff;
+  --button-primary-bg: linear-gradient(to right, #00c6ff, #0072ff);
+  --button-secondary-bg: #7f8c8d;
+  --link-color: #3498db;
+  /* Existing Brand Color */
+  --dpscs-blue: #003366;
+  
+  /* Action/Warning Color indicating a major admin task without being "danger red" */
+  /* A deep golden-orange works well against navy blue */
+  --dpscs-action-gold: #e69500; 
+  --dpscs-action-gold-hover: #c78100;
+
+  /* Neutral Colors */
+  --gray-light: #f8f9fa;
+  --gray-border: #dee2e6;
+  --text-dark: #212529;
+  --text-muted: #6c757d;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

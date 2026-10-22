@@ -1,0 +1,67 @@
+/* ... (existing styles) ... */
+
+.header-bar {
+  background-color: var(--header-bg);
+  padding: 8px 20px;
+  color: var(--header-text-color);
+  font-weight: 500;
+  border-bottom: 1px solid var(--header-border);
+  display: flex; /* Add flexbox */
+  justify-content: space-between; /* Space out items */
+  align-items: center; /* Vertically align */
+}
+
+.logout-button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #c82333;
+  background-color: #dc3545;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+/* ================================================ */
+/* --- NEW STYLES FOR GLOBAL LOADER AND ERRORS --- */
+/* ================================================ */
+
+/* Style for the full-screen loader shown during initialization */
+.global-loader {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* The background is already set on the body, so this will be seamless */
+}
+
+/* Style for the full-screen error message if reference data fails to load */
+.global-error-fullscreen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+
+    /* --- Professional Styling --- */
+    color: #e74c3c; /* A standard, clear error red */
+    background-color: rgba(30, 48, 64, 0.75); /* Match our form container background */
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid rgba(231, 76, 60, 0.5);
+    border-radius: 8px;
+    
+    /* Center the box itself if we give it a max-width */
+    max-width: 600px;
+    height: auto; /* Let the height be determined by content */
+    margin: auto; /* Center the box on the page */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}

@@ -1,0 +1,569 @@
+/* ============================================================
+   MAIN CONTAINER & HEADER (Based on Juve React)
+   ============================================================ */
+.details-view-container {
+    background: transparent;
+    padding: 20px;
+    color: #e0e0e0; /* Default text color for dark theme */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.details-view-container.modal-view {
+    background-color: rgba(30, 48, 64, 0.95); /* Deep Blue/Grey Background */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.details-title-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.details-title-logo {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
+.details-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.back-button {
+    padding: 8px 16px;
+    border: 1px solid #5a6878;
+    border-radius: 6px;
+    background-color: rgba(127, 140, 141, 0.4);
+    color: #e0e0e0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.back-button:hover {
+    background-color: rgba(149, 165, 166, 0.5);
+    border-color: #95a5a6;
+    color: white;
+}
+
+/* ============================================================
+   GRID LAYOUTS
+   ============================================================ */
+.details-grid { 
+    display: grid; 
+    gap: 15px 25px; 
+    margin-bottom: 20px;
+}
+
+/* --- IDENT SPECIFIC LAYOUT (4 Columns for Name, UCN, SID, RecType) --- */
+.top-section-grid.ident-layout {
+    grid-template-columns: 2fr 1fr 1fr 1fr; 
+    align-items: flex-start;
+}
+
+.personal-identifiers-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.fingerprint-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.address-grid { grid-template-columns: 1fr 0.5fr 3fr 0.5fr; }
+.city-state-zip-grid { grid-template-columns: 2fr 1fr 1fr 2fr; }
+
+/* ============================================================
+   DATA ITEMS (Labels & Values)
+   ============================================================ */
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label { 
+    font-size: 0.8rem; 
+    font-weight: 600; 
+    color: #bdc3c7; /* Light Grey Label */
+    margin-bottom: 6px; 
+    text-transform: uppercase; 
+    white-space: nowrap;
+}
+
+.span-two-columns {
+    grid-column: span 2;
+}   
+
+/* Standard Read-Only Value (Grey Box) */
+.detail-value {
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border: 1px solid #c8d0d8;
+    display: flex;
+    align-items: center;
+}
+
+/* ============================================================
+   EDIT MODE STYLES
+   ============================================================ */
+
+.name-edit-container {
+    background-color: #ffffff !important;
+    padding: 15px !important;
+    border-radius: 6px;
+    border: 1px solid #3a5064;
+    margin-bottom: 0;
+}
+
+.detail-value-edit {
+    background-color: #ffffff;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border: 1px solid #ced4da;
+    width: 100%;
+    box-sizing: border-box; 
+    height: 38px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.detail-value-edit:focus {
+    border-color: #3498db;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+.read-only-in-edit {
+    background-color: transparent !important;
+    border-color: var(--border-color) !important;
+    color: #bdc3c7 !important;
+}
+
+.name-edit-container .detail-label {
+    color: #5a6878;
+}
+
+.field-error-text {
+    color: #dc3545;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 4px;
+    display: block;
+}
+
+/* ============================================================
+   LISTS & TABLES
+   ============================================================ */
+.details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.details-list span {
+    background-color: rgba(30, 48, 64, 0.5);
+    color: #e0e0e0;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border: 1px solid #5a6878;
+    display: block;
+    transition: background-color 0.2s;
+}
+
+.details-list span:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #5a6878;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.2); 
+}
+
+.details-table { width: 100%; border-collapse: collapse; }
+.details-table th, .details-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #5a6878; 
+    font-size: 0.9rem;
+    font-weight: bold;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.details-table thead {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+.details-table th { color: #bdc3c7; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; }
+.details-table td { color: #e0e0e0; font-family: 'Courier New', Courier, monospace; }
+.details-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.05); }
+
+/* ============================================================
+   APPENDED ID GRID & CARDS
+   ============================================================ */
+.appended-id-grid-container {
+    display: grid;
+    /* FIX: Force 3 columns on Desktop to achieve the "3 on top, 2 on bottom" layout */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.section-panel.sub-section {
+    background-color: rgba(30, 48, 64, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title, .sub-section-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #95a5a6;
+}
+
+/* ============================================================
+   BUTTONS & MISC
+   ============================================================ */
+.section-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.action-button {
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.save-button {
+    background-color: #3498db;
+    color: white;
+}
+.save-button:hover { background-color: #2980b9; }
+.save-button:disabled { background-color: #95a5a6; cursor: not-allowed; }
+
+.cancel-button {
+    background-color: #0000;
+    border: 1px solid #bdc3c7;
+    color: #bdc3c7;
+}
+
+.editable-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.editable-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.editable-list-item.marked-for-deletion .detail-value-edit,
+.editable-list-item.marked-for-deletion .detail-value {
+    text-decoration: line-through;      
+    text-decoration-color: #dc3545;     
+    text-decoration-thickness: 2px;     
+    color: #6c757d;                     
+    background-color: #f8d7da;          
+    border-color: #dc3545;              
+    opacity: 0.8;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: white;
+    transition: background-color 0.2s;
+    padding: 0;
+}
+
+.delete-button:hover { background-color: #c82333; }
+.delete-button svg { width: 16px; height: 16px; fill: currentColor; }
+.delete-button.undo { background-color: #28a745; border-color: #28a745; }
+.delete-button.undo:hover { background-color: #218838; }
+
+.add-button {
+    align-self: flex-start;
+    margin-top: 5px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.add-button:hover { background-color: #218838; }
+
+.no-records-text { color: #aab7c4; font-style: italic; padding: 10px 0; }
+
+.comment-textarea {
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border: 1px solid #c8d0d8;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.comment-textarea:focus {
+    outline: none;
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+/* ============================================================
+   HEADER ACTIONS (Consolidate & Close Buttons)
+   ============================================================ */
+.details-header-actions {
+    display: flex;
+    align-items: center; /* Vertically centers the buttons */
+    justify-content: flex-end;
+    gap: 20px; /* Space between Consolidate and X */
+}
+
+/* Override the absolute positioning from DetailsModal.css 
+   so the X button joins the flexbox flow next to the Consolidate button */
+.details-header-actions .modal-close-button {
+    position: static !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-size: 2.5rem; /* Keeps the X nice and large */
+    line-height: 0.8; /* Removes weird invisible spacing around text characters */
+    margin-bottom: 4px; /* Minor optical adjustment to perfectly center the 'X' with the button text */
+}
+
+/* ============================================================
+   CONSOLIDATION BUTTON STYLES
+   ============================================================ */
+/* The main trigger button in the header */
+.btn-consolidate-trigger {
+    background-color: var(--dpscs-action-gold);
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Slightly larger tap target */
+    border-radius: 6px; /* Softer corners */
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.btn-consolidate-trigger:hover {
+    background-color: var(--dpscs-action-gold-hover);
+    transform: translateY(-1px); /* Subtle lift effect */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn-consolidate-trigger:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+/* Replaces the inline style={{ marginRight: '8px' }} */
+.consolidate-icon {
+    margin-right: 8px;
+}
+
+/* Disabled State for Consolidation Button */
+.btn-consolidate-trigger:disabled {
+    background-color: rgba(149, 165, 166, 0.5); /* Muted grey/blue */
+    color: rgba(255, 255, 255, 0.6);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dim the FontAwesome icon as well when disabled */
+.btn-consolidate-trigger:disabled .consolidate-icon {
+    opacity: 0.5;
+}
+
+/* --- Rapback Subscribed Badge --- */
+.rapback-badge {
+    color: #f1c40f; 
+    font-size: 0.75rem; 
+    font-weight: bold; 
+    border: 1px solid #f1c40f; 
+    padding: 4px 8px; 
+    border-radius: 4px;
+    text-transform: uppercase;
+    display: inline-flex; 
+    align-items: center;
+    line-height: 1;
+}
+
+.title-badges {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.fbi-owned-badge {
+    color: #f1c40f;  /* Red color to distinguish from the gold Rapback badge */
+    font-size: 0.75rem; 
+    font-weight: bold; 
+    border: 1px solid #f1c40f; 
+    padding: 4px 8px; 
+    border-radius: 4px;
+    text-transform: uppercase;
+    display: inline-flex; 
+    align-items: center;
+    line-height: 1;
+}
+
+/* ============================================================
+   RESPONSIVE MEDIA QUERIES
+   ============================================================ */
+
+/* Tablet & Smaller Laptops (Max Width 1200px) */
+@media (max-width: 1200px) {
+    /* Switch Appended ID grid to 2 columns if space is tight */
+    .appended-id-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .top-section-grid.ident-layout { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 15px;
+    }
+    .detail-item-name { 
+        grid-column: span 2; 
+    }
+    .detail-item-record-type {
+        grid-column: span 1; 
+    }
+}
+
+/* Mobile Devices (Max Width 768px) */
+@media (max-width: 768px) {
+    
+    /* 1. Header Adjustments */
+    .details-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .details-title-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .details-header h2 {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .back-button {
+        width: 100%;
+        text-align: center;
+        margin-top: 5px;
+    }
+    
+    /* 2. Grid Stacking */
+    /* Stack these specific grids vertically */
+    .top-section-grid.ident-layout,
+    .address-grid,
+    .city-state-zip-grid,
+    .personal-identifiers-grid,
+    .fingerprint-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    /* Appended ID cards stack in a single column */
+    .appended-id-grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Reset spans so items fill the width */
+    .span-two-columns, 
+    .detail-item-name {
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .detail-item {
+        width: 100%;
+    }
+    
+    /* Allow scrolling for wide tables */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .details-header-actions {
+        width: 100%;
+        flex-direction: row-reverse; /* Puts X on the right, Consolidate on the left on mobile */
+        justify-content: space-between;
+    }
+    
+    .details-header-actions .modal-close-button {
+        margin-bottom: 0;
+    }
+}

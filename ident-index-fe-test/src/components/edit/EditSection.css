@@ -1,0 +1,557 @@
+/* ======================================================= */
+/* --- WRAPPER AND SHARED STYLES --- */
+/* ======================================================= */
+
+.edit-section-wrapper {
+    background-color: rgba(30, 48, 64, 0.75);
+    padding: 20px 25px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-section-wrapper.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.edit-section-wrapper.disabled.editing {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.edit-section-wrapper.editing {
+    border-color: var(--link-color);
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.edit-section-wrapper .section-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 15px;
+}
+.edit-section-wrapper .section-header .section-title {
+    font-size: 1.0rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #95a5a6;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 1.25rem;       
+    font-weight: 400;         
+    text-transform: none;     
+    color: #FFFFFF;        
+    letter-spacing: 0.5px;
+}
+
+.edit-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid #7f8c8d;
+    color: #bdc3c7;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.edit-button:hover:not(:disabled) {
+    background-color: #7f8c8d;
+    color: white;
+}
+
+.edit-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.section-content {
+    padding-bottom: 20px;
+}
+
+.section-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.action-button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.save-button {
+    background: #0084c7;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.save-button:hover {
+    background: #009be6;
+    transform: translateY(-1px);
+}
+.save-button:disabled {
+    background: #5a6878;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.cancel-button {
+    background: #0000;
+    border: 1px solid #7f8c8d;
+    color: #bdc3c7;
+}
+.cancel-button:hover {
+    background: #7f8c8d;
+    color: white;
+}
+
+/* ======================================================= */
+/* --- EDITABLE FORM ELEMENT STYLES --- */
+/* ======================================================= */
+
+.detail-value-edit,
+.comment-textarea-edit {
+    width: 100%;
+    background-color: #f0f2f5;
+    border: 1px solid #c8d0d8;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    box-sizing: border-box; 
+}
+.detail-value-edit:focus,
+.comment-textarea-edit:focus {
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+.comment-textarea-edit {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit; 
+}
+.detail-value-edit:disabled {
+    background-color: #f5f5f5; 
+    color: #666;               
+    cursor: not-allowed;       
+    border-color: #ddd;
+}
+
+/* ======================================================= */
+/* --- LIST AND TABLE EDIT STYLES --- */
+/* ======================================================= */
+
+.editable-table-container,
+.editable-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+.no-records-text {
+    font-style: italic;
+    color: #bdc3c7;
+    padding: 10px 0;
+}
+
+.editable-list-item .detail-item.full-width {
+    flex-grow: 1;
+}
+
+.editable-list-item:has(.detail-item):has(.delete-action-cell) {
+    align-items: flex-end;
+}
+
+.editable-record-row {
+    display: grid;
+    gap: 15px 25px; 
+    align-items: center; 
+    margin-bottom: 15px;
+}
+
+.header-row {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #444;
+}
+.header-row .detail-label {
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+/* Grid definitions */
+.appended-id-grid {
+    grid-template-columns: 2fr 1.2fr 2fr 1.5fr 1.5fr 40px;
+}
+.appended-id-grid:not(:has(.delete-action-cell)) {
+    grid-template-columns: 2fr 1.2fr 2fr 1.5fr 1.5fr;
+}
+.reference-grid {
+    display: grid;
+    /* Strict 5-column layout to align headers and inputs */
+    grid-template-columns: 1fr 1fr 1.5fr 3fr 40px;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+.reference-grid:not(:has(.delete-action-cell)) {
+    grid-template-columns: 1fr 1fr 1.5fr 3fr;
+}
+
+.delete-action-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+.delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #c82333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s;
+}
+.delete-button:hover {
+    background-color: #a81c2a;
+}
+
+.add-button {
+    margin-top: 15px;
+    align-self: flex-start;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.add-button:hover {
+    background-color: #218838;
+}
+
+.editable-list-item.marked-for-deletion,
+.editable-record-row.marked-for-deletion {
+    opacity: 0.6;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.marked-for-deletion .detail-value-edit,
+.marked-for-deletion .detail-value {
+    text-decoration: line-through;
+    text-decoration-color: #dc3545;
+    text-decoration-thickness: 2px;
+    opacity: 0.7;
+}
+
+.delete-button.undo {
+    background-color: #28a745; 
+}
+.delete-button.undo:hover {
+    background-color: #218838;
+}
+
+/* --- INLINE CONFIRMATION BANNER --- */
+.inline-confirmation-banner {
+    background-color: rgba(44, 62, 80, 0.8);
+    border: 1px solid var(--link-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    animation: slideDown 0.3s ease-out;
+}
+.inline-confirmation-banner h4 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: white;
+}
+.inline-confirmation-banner .confirmation-details p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    color: #bdc3c7;
+}
+.inline-confirmation-banner .confirmation-details p strong {
+    color: white;
+}
+.inline-confirmation-banner .form-group {
+    margin-top: 15px;
+}
+.inline-confirmation-banner .form-group label {
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #bdc3c7;
+    margin-bottom: 8px;
+    display: block;
+}
+.inline-confirmation-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+.action-button.small {
+    padding: 6px 16px;
+    font-size: 0.9rem;
+}
+
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- MISC NUMBERS & REFERENCE SPECIFICS --- */
+
+.editable-list-item.misc-num-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0; 
+    padding-bottom: 0; 
+}
+
+.editable-list-item.reference-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.misc-num-list-item .editable-list-item-fields {
+    display: flex;
+    align-items: flex-end; 
+    gap: 10px;           
+    width: 100%;
+}
+
+.misc-num-list-item .row-error-container {
+    padding-left: 110px;
+    width: 100%;
+}
+
+.reference-grid .reference-error-container {
+    grid-column: 1 / -1; 
+    width: 100%;
+    margin-top: 5px;
+}
+
+.reference-header {
+    display: flex;
+    gap: 10px;
+    padding: 0 10px 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    color: #bdc3c7;
+    font-size: 0.85rem;
+}
+
+/* Reference Column Widths (Desktop) */
+.col-date { flex: 0 0 120px; }
+.col-type { flex: 0 0 80px; }
+.col-number { flex: 0 0 150px; }
+.col-desc { flex: 1; }
+.col-action { width: 40px; display: flex; justify-content: center; }
+
+.col-action .delete-button {
+    margin-top: 5px;
+}
+
+.read-only-in-edit {
+    background-color: transparent !important;
+    border-color: var(--border-color) !important;
+    color: #bdc3c7 !important;
+}
+
+/* FIX: Standard edit row for Desktop */
+.edit-row {
+    display: flex;
+    flex-direction: row; 
+    gap: 15px;           
+    width: 100%;
+    margin-bottom: 15px; 
+}
+
+.edit-row .detail-item {
+    flex: 1;             
+    min-width: 0;        
+}
+
+.edit-row.wrap {
+    flex-wrap: wrap;
+}
+
+.shared-row-error {
+    width: 100%;
+}
+
+/* FIX: Standard Reference Edit Row for Desktop */
+.reference-edit-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.editable-record-row.pending-deletion-highlight {
+    border-radius: 6px;
+    border: 2px solid var(--link-color); /* Bright blue border */
+    background-color: #e8f4fc; /* Light Blue Background */
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.4); /* Glow Effect */
+    
+    /* CRITICAL FOR VISIBILITY: Z-Index must be higher than Modal Overlay (1050) */
+    position: relative;
+    z-index: 1060; 
+    
+    /* Prevent interaction with the row while modal is open */
+    pointer-events: none; 
+}
+
+/* Ensure inputs inside the highlighted row also look correct */
+.pending-deletion-highlight .detail-value-edit {
+    background-color: #ffffff;
+    border-color: #aed6f1;
+}
+
+/* FIX: Ensure Mobile Labels are HIDDEN by default on desktop */
+.mobile-label {
+    display: none !important;
+}
+
+.section-title-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-title-container .section-title {
+    margin: 0;
+    line-height: 1;
+}
+
+/* ======================================================= */
+/* --- RESPONSIVE / MOBILE STYLES (< 768px) --- */
+/* ======================================================= */
+
+@media screen and (max-width: 768px) {
+    
+    /* 1. GENERAL EDIT ROWS (Stack vertically) */
+    .edit-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .edit-row .detail-item {
+        flex: 1 1 100%; 
+        width: 100%;
+    }
+
+    /* 2. LIST ITEMS (Aliases, etc.) */
+    .editable-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+        border: 1px solid #4a627a; /* Add border to distinguish cards */
+        background-color: rgba(0,0,0,0.2); /* Darker background */
+        padding: 5px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        gap: 12px;
+    }
+
+    /* Make inputs full width inside the card */
+    .editable-list-item > div,
+    .editable-list-item > .detail-item {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* 3. REFERENCE SECTION FIX */
+    /* Hide the Desktop Header */
+    .reference-header {
+        display: none;
+    }
+
+    /* Switch Reference Row to Vertical Stack */
+    .reference-edit-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* Show Labels on Mobile */
+    .mobile-label {
+        display: block !important;
+        font-size: 0.75rem;
+        color: #95a5a6;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    /* Force columns to full width */
+    .col-date, .col-type, .col-number, .col-desc {
+        width: 100%;
+        flex: 1 1 100%;
+        margin-bottom: 0;
+    }
+
+    /* Move Delete Button */
+    .col-action {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 5px;
+        border-top: 1px dashed #5a6878;
+        padding-top: 10px;
+    }
+
+    /* 4. MISC NUMBER FIX */
+    .misc-num-list-item .editable-list-item-fields {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch;
+    }
+    .misc-num-list-item .row-error-container {
+        padding-left: 0;
+    }
+
+    /* Adjust Button sizes for touch */
+    .delete-button, .close-button {
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,92 @@
+.pagination-container {
+    display: flex;
+    /* CHANGED: This properly separates the child elements */
+    justify-content: space-between; 
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    flex-wrap: wrap; 
+}
+
+/* --- NEW: Page Size Selector --- */
+.page-size-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.page-size-selector label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #bdc3c7;
+}
+.page-size-selector select {
+    background-color: var(--secondary-bg);
+    color: var(--font-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 6px;
+    font-size: 0.9rem;
+}
+
+/* --- Existing Page Controls --- */
+.page-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Base style for all buttons */
+.pagination-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    background-color: var(--secondary-bg);
+    color: var(--font-color);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.pagination-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.pagination-button:not(:disabled):hover {
+    background-color: #4a627a;
+    border-color: #7f8c8d;
+}
+
+/* Specific styles for the arrow buttons */
+.arrow-button {
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Specific styles for the number buttons */
+.page-number {
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    min-width: 36px;
+    height: 36px;
+}
+
+/* Style for the currently active page number */
+.page-number.active {
+    background-color: var(--link-color);
+    border-color: var(--link-color);
+    color: white;
+    cursor: default;
+}
+
+/* Style for the ellipsis (...) */
+.pagination-ellipsis {
+    color: var(--font-color);
+    padding: 0 8px;
+    align-self: flex-end; /* Aligns it with the bottom of the buttons */
+}

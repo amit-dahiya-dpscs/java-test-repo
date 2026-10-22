@@ -1,0 +1,125 @@
+/*
+ * Final, Professional Styles for the Search Results Table
+ */
+
+.results-container {
+    background-color: var(--primary-bg); /* Use the primary dark color */
+    padding: 30px 40px; /* More padding */
+    border-radius: 10px; /* Rounded corners */
+    color: var(--font-color);
+    width: 100%;
+    max-width: 1200px; /* Control the max width of the content */
+    border: 1px solid var(--border-color); /* Subtle border for definition */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Add a soft shadow */
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.results-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400; /* Lighter font weight for a modern look */
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.5px; /* Add some letter spacing */
+}
+
+.results-title-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.results-title-logo {
+    width: 90px;
+    height: 90px;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
+.back-button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: 1px solid #7f8c8d; /* A more visible border */
+    background-color: var(--button-secondary-bg);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: 600;
+}
+
+.back-button:hover {
+    background-color: #95a5a6;
+    border-color: #95a5a6;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.1); 
+}
+
+.results-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.results-container th,
+.results-container td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid var(--border-color); 
+    font-size: 0.9rem;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.results-container thead {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+.results-container th {
+    color: #bdc3c7;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.results-container td {
+    color: #ffffff; /* Forces pure white instead of off-white for better contrast */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    letter-spacing: 0.5px; /* Adds breathing room between thick monospace characters */
+}
+
+.results-container tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.alias-badge {
+    margin-left: 10px;
+    font-size: 0.85rem;
+    color: #bdc3c7; /* A crisp, light silver that pops against the dark background */
+    font-style: italic;
+    /* Using a standard sans-serif font for the badge makes it visually distinct from the monospace Name */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    font-weight: 500;
+    letter-spacing: normal;
+}
+
+/* Style for the "View" link to stand out */
+.view-link {
+    background: none;
+    border: none;
+    color: var(--link-color);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+    font-weight: bold;
+}

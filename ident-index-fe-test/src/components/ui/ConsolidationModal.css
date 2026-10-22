@@ -1,0 +1,174 @@
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-30px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly darker backdrop */
+    backdrop-filter: blur(2px); /* Subtle blur effect on background */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align towards top instead of dead center */
+    padding-top: 10vh;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.consolidation-modal {
+    background: #fff;
+    border-radius: 12px; /* Rounder corners */
+    width: 450px; /* Slightly wider */
+    /* Deeper, softer shadow for a modern "floating" card look */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth spring-like animation */
+}
+
+/* Header Styling */
+.consolidation-modal .modal-header {
+    /* Use brand blue gradient for a premium feel */
+    background: linear-gradient(135deg, var(--dpscs-blue) 0%, #004080 100%);
+    color: white;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.consolidation-modal .modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.header-icon {
+    margin-right: 12px;
+    font-size: 1.4rem;
+    opacity: 0.9;
+}
+
+.consolidation-modal .close-x {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.consolidation-modal .close-x:hover {
+    color: white;
+}
+
+/* Body Styling */
+.consolidation-modal .modal-body {
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.modal-input {
+    padding: 12px 15px;
+    border: 2px solid var(--gray-border);
+    border-radius: 6px;
+    font-size: 1.1rem; /* Larger font for input */
+    transition: all 0.2s;
+    color: var(--dpscs-blue);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Modern focus state */
+.modal-input:focus {
+    border-color: var(--dpscs-blue);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 51, 102, 0.15);
+}
+
+.helper-text {
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Footer Styling */
+.consolidation-modal .modal-footer {
+    padding: 20px 25px;
+    background-color: var(--gray-light);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid var(--gray-border);
+}
+
+/* Shared Button Styles */
+.modal-btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* Primary Action Button */
+.consolidation-modal .btn-enter {
+    background-color: var(--dpscs-blue);
+    color: white;
+    border: none;
+}
+
+.consolidation-modal .btn-enter:hover:not(:disabled) {
+    background-color: #002244; /* Darker blue hover */
+    box-shadow: 0 4px 8px rgba(0,51,102,0.2);
+}
+
+.consolidation-modal .btn-enter:disabled {
+    background-color: #a0b0c0;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Cancel Button */
+.consolidation-modal .btn-close {
+    background-color: white;
+    color: var(--text-dark);
+    border: 2px solid var(--gray-border);
+}
+
+.consolidation-modal .btn-close:hover {
+    background-color: var(--gray-border);
+    border-color: #c0c4c8;
+}
+
+.header-icon-svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    /* This ensures the stroke color matches the text color (white) */
+    color: currentColor; 
+    opacity: 0.9;
+    /* Adds a subtle drop shadow to the icon to match the premium feel */
+    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
+}
